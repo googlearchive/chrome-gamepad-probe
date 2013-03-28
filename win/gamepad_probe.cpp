@@ -268,8 +268,8 @@ int _tmain(int argc, _TCHAR* argv[])
   }
 
   printf("Thanks! Please file a bug at http://crbug.com with your gamepad information.\n");
-  printf("Press ENTER to exit.\n");
-  while (GetKeyState(VK_RETURN) >= 0)  // Wait for enter to be pressed.
+  printf("Press SPACE to exit.\n");
+  while (GetKeyState(VK_SPACE) >= 0)  // Wait for enter to be pressed.
     Sleep(50);
 }
 
