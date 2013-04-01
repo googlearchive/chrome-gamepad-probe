@@ -204,14 +204,15 @@ void GetButton(Context* ctxt, int id) {
   }
 }
 
-void GetAxis(Context* ctxt, const char* str, int id) {
-  printf("Press axis %d %s:\n", id, str);
+void GetAxis(Context* ctxt, char *desc, int id) {
+  const char* direction = (id % 2 == 0) ? "left" : "up";
+  printf("Press axis %d (%s) %s:\n", id, desc, direction);
   bool buttonPressed = false;
   while (!buttonPressed) {
 	char buf[80];
 	buttonPressed = PollGamepad(ctxt, buf);
 	if (buttonPressed) {
-      printf("axis %d %s = %s\n", id, str, buf);
+      printf("axis %d (%s) %s = %s\n", id, desc, direction, buf);
 	  break;
 	}
 	Sleep(50);
@@ -260,11 +261,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	GetButton(&ctxt, i);
 	WaitForNeutralGamepad(&ctxt);
   }
-  for (int i = 0; i < 2; i++) {
-    GetAxis(&ctxt, "up", i);
-	WaitForNeutralGamepad(&ctxt);
-	GetAxis(&ctxt, "left", i);
-	WaitForNeutralGamepad(&ctxt);
+  for (int i = 0; i < 4; i++) {
+    if (i < 2) {
+      GetAxis(&ctxt, "left thumbstick", i);
+    } else {
+      GetAxis(&ctxt, "right thumbstick", i);
+    }
+    WaitForNeutralGamepad(&ctxt);
   }
 
   printf("Thanks! Please file a bug at http://crbug.com with your gamepad information.\n");
