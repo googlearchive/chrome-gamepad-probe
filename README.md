@@ -6,3 +6,8 @@ Today, Chrome only supports DirectInput controllers it can identify. This is bec
 differently on different controllers, but the Gamepad API expects consistent button and axis numbers.
 
 Ports to Linux and OS X are currently in development.
+
+Quick start
+-----------
+Download gamepad_probe.exe from the win/bin directory. Then run the program, follow the directions, and open a bug
+at crbug.com, pasting the program output inline.
